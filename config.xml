@@ -41,7 +41,7 @@
     <plugin name="cordova-plugin-geolocation" />
 
     <!-- Define app icon for each platform. -->
-    <icon src="res/icon/icon.png" />
+    <icon src="res/icon/logo.png" />
 
     <!-- Define app splash screen for each platform. -->
     <gap:splash src="res/screen/android/screen-ldpi-portrait.png"       gap:platform="android" gap:qualifier="port-ldpi" />
