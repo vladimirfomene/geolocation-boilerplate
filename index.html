@@ -2,17 +2,12 @@
 <html>
   <head>
   <meta charset="utf-8">
-  <title>phonegap & jquery mobile boilerplate</title>
+  <title>Find My Location - VladimirFomene</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="css/materialize.min.css">
 
-  <link rel="stylesheet"  href="css/jquery.mobile.structure.css" />
-  <link rel="stylesheet" href="css/jquery.mobile.theme.css" />
-
-  <script src="js/lib/jquery.js"></script>
-  <script src="js/app/app.js"></script>
-  <script src="js/app/bootstrap.js"></script>
-  <script src="js/lib/jquery.mobile.js"></script>
   <style>
     html, body {
       height: 100%;
@@ -21,6 +16,13 @@
 
     #map{
       height: 100%;
+    }
+
+    #location-btn{
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      width: 100%;
     }
   </style>
 
@@ -38,8 +40,8 @@
 
 
     //Google map initialization
-    var map;
-    var marker;
+    var map = null;
+    var marker = null;
     function initMap(){
 
       if (navigator.geolocation) {
@@ -53,12 +55,6 @@
 
           map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-          var markerOptions = {
-            position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
-          };
-
-          marker = new google.maps.Marker(markerOptions);
-          marker.setMap(map);
 
         });
       } else {
@@ -67,15 +63,52 @@
 
     }
 
+    window.onload = function(){
+      document.getElementById("location-btn").addEventListener("click", function(){
+        if(navigator.geolocation){
+          navigator.geolocation.getCurrentPosition(function(position){
+
+            if(marker === null){
+
+              var markerOptions = {
+                position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+              };
+
+              marker = new google.maps.Marker(markerOptions);
+
+              marker.setMap(map);
+            }else{
+              marker.setMap(null);
+              marker = null;
+            }
+          });
+
+
+        }else{
+          alert("There is no location support on your browser")
+        }
+      });
+
+    };
 
   </script>
 
   </head>
   <body>
-      <div id="map">
-      </div>
+     <nav>
+       <div class="nav-wrapper">
+         <a href="#" class="brand-logo center">Find My Location</a>
+       </div>
+    </nav>
+    <div id="map">
+    </div>
+    <a class="waves-effect waves-light btn" id="location-btn">Pin Location</a>
     <!-- Google maps javascript api -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDi5XLlJPvGIvOx3lia08f307ahecCQhXM&callback=initMap"
     async defer></script>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
   </body>
 </html>
