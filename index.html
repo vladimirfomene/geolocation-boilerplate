@@ -5,8 +5,7 @@
   <title>Find My Location - VladimirFomene</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="css/materialize.min.css">
+
 
   <style>
     html, body {
@@ -24,6 +23,7 @@
       bottom: 0;
       right: 0;
       width: 100%;
+      margin: 0px;
     }
   </style>
 
@@ -96,21 +96,13 @@
 
   </head>
   <body>
-     <nav>
-       <div class="nav-wrapper">
-         <a href="#" class="brand-logo center">Find Me</a>
-       </div>
-    </nav>
     <div id="map">
     </div>
-    <a class="waves-effect waves-light btn" id="location-btn">Pin Location</a>
+    <button style="text-align: center;" id="location-btn">Pin Location</button>
     <!-- Google maps javascript api -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDi5XLlJPvGIvOx3lia08f307ahecCQhXM&callback=initMap"
     async defer></script>
 
-    <!-- Compiled and minified JavaScript -->
-    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-    <!-- <script src="js/materialize.min.js"></script> -->
 
   </body>
 </html>
